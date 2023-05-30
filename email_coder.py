@@ -7,8 +7,8 @@ def email_masking(email, masking_dict={'@': ' [ at ] ', '.': ' [ dot ] '}):
     >>> str(email_masking(email="chris.tucker@gmail.com", masking_dict=custom_masking_dict))
     'chris({dot})tucker[at]gmail({dot})com'
     """
-    replaced_dots = masking_dict['.'].join(email.split('.'))
-    return masking_dict['@'].join(replaced_dots.split('@'))
+    partialy_masked = masking_dict['.'].join(email.split('.'))
+    return masking_dict['@'].join(partialy_masked.split('@'))
 
 def email_recovery(masked_email, masking_dict={'@': ' [ at ] ', '.': ' [ dot ] '}):
     """Return the email from the masked form to the original form.
