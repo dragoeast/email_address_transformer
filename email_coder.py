@@ -1,4 +1,12 @@
-def email_masking(email, masking_dict={'@': ' [ at ] ', '.': ' [ dot ] '}):
+Email = str
+Masked_Email = str
+Dot = str
+At = str
+Masked_Dot = str
+Masked_At = str
+Masking_Dictionary = dict[Dot|At, Masked_Dot|Masked_At]
+
+def email_masking(email: Email, masking_dict: Masking_Dictionary={'@': ' [ at ] ', '.': ' [ dot ] '}):
     """Parse the email address where the dots(.) and the at(@) will be repalced
      by a string.
     >>> str(email_masking(email="chris.tucker@gmail.com"))
@@ -10,7 +18,8 @@ def email_masking(email, masking_dict={'@': ' [ at ] ', '.': ' [ dot ] '}):
     partialy_masked = masking_dict['.'].join(email.split('.'))
     return masking_dict['@'].join(partialy_masked.split('@'))
 
-def email_recovery(masked_email, masking_dict={'@': ' [ at ] ', '.': ' [ dot ] '}):
+def email_recovery(masked_email: Masked_Email, \
+                   masking_dict: Masking_Dictionary={'@': ' [ at ] ', '.': ' [ dot ] '}):
     """Return the email from the masked form to the original form.
     >>> email_recovery(masked_email='chris [ dot ] tucker [ at ] gmail [ dot ] com')
     'chris.tucker@gmail.com'
